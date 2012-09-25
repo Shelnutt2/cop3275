@@ -4,6 +4,7 @@
 
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 //Small function to calculate f(x)
 long int fofx(long int x){
@@ -18,7 +19,7 @@ long int yval; //yvalue
 
 char buf[BUFSIZ]; //create a buffer with the defined buffer size
 char *c; //character used for checking to make sure user entered an integer
-long int i; //Long time to allow user to give greater integers
+
 
 
 while(1<2){
