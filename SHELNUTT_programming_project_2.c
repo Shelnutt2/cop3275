@@ -26,7 +26,7 @@ printf("Enter numbers 1 - 16 in any order: "); //ask for user input
    result = strtok( buf,delims  ); //get each input integer
    int k = 0; //count input
    while( result != NULL ) {
-       if (k>15){ //check if more than 16 enters were inputer
+       if (k>15){ //check if more than 16 enters were inputed
           printf("Please enter 16 integers\n");
           good = -1;
           break;
@@ -49,7 +49,7 @@ printf("Enter numbers 1 - 16 in any order: "); //ask for user input
        k++;
     }
    if(k != 16){ //make sure 16 integers were inputed
-      printf("please enter all 16 integers from 1-16");
+      printf("please enter all 16 integers from 1-16\n");
       good = -1;
    }
    if(good==0){ //if all was good display and compute data
