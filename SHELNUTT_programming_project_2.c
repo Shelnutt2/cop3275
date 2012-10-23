@@ -50,7 +50,7 @@ printf("Enter numbers 1 - 16 in any order: "); //ask for user input
     }
    if(k != 16){ //make sure 16 integers were inputed
       printf("please enter all 16 integers from 1-16");
-      good = -1
+      good = -1;
    }
    if(good==0){ //if all was good display and compute data
    int colsum[4]; //create array for column sums
