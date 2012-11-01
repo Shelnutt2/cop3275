@@ -7,6 +7,32 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+char setday2(int day){
+   char *dayc = NULL;
+   switch(day):{
+      case 1:
+         dayc = "first";
+      case 2:
+         dayc = "second";
+      case 3:
+         dayc = "third";
+      case 4:
+         dayc = "forth";
+      case 5:
+         dayc = "fifth";
+      case 6:
+         dayc = "sixth";
+      case 7:
+         dayc = "seventh";
+      case 8:
+         dayc = "eigth";
+      case 9:
+         dayc = "nineth";
+   }
+   return dayc;
+
+}
 int main(void){ //initialize main with void return type.
 
 char buf[BUFSIZ]; //create a buffer with the defined buffer size
@@ -36,11 +62,7 @@ printf("Enter a date as mm/dd/yyyy:: "); //ask for user input
           good = -1;
           break;
        }
-      // else if(i > 16 || i<1){ //make sure no integers outside 1-16 were inputed
-       //   printf("Please enter only integers from 1-16\n");
-         // good = -1;
-         // break; 
-       //}
+
        else{ //add integers to the 4x4 matrix
        date[k] = i;
        result = strtok( NULL, delims );
@@ -55,10 +77,7 @@ printf("Enter a date as mm/dd/yyyy:: "); //ask for user input
       int day = date[1];
       int month = date[0];
       int year = date[2];
-      //for(k=0;k<sizeof(date);k++){
-        // day = date[0]
 
-      //}
       if( month < 1 || month > 12 ){
          printf("Please make sure the month is between 1 and 12");
          reallygood =  -1;
@@ -125,12 +144,72 @@ printf("Enter a date as mm/dd/yyyy:: "); //ask for user input
               monthc="December";
               break;
         }
-        switch(day){
-        char day1c = NULL;
-           case (floor(dayc / 10) == 2):
-              
+        char *day1c = NULL;
+        char *day2c = NULL;
+        switch(int(day / 10)){
+           
+           case 0:
+              day1c="";
+              day2c = setday2(day);
+              break;
+
+           case 1:
+              if(day == 10){
+                 day1c = "tenth";
+              }
+              else if(day == 11){
+                 day1c = "eleventh";
+              }
+              else if(day == 12){
+                 day1c = "twelfth";
+              }
+              else if(day == 13){
+                 day1c = "thirteenth";
+              }
+              else if(day == 14){
+                 day1c = "fourteenth";
+              }
+              else if(day == 15){
+                 day1c = "fifteenth";
+              }
+              else if(day == 16){
+                 day1c = "sixteenth";
+              }
+              else if(day == 17){
+                 day1c = "seventeenth";
+              }
+              else if(day == 18){
+                 day1c = "eighteenth";
+              }
+              else if(day == 19){
+                 day1c = "nineteenth";
+              }
+              break;
+
+           case 2:
+              if(day-20 == 0){
+                 day1c = "twentieth";
+                 day2c = "";
+              }
+              else{
+              day1c="twenty";
+              day2c = setday2(day-20);
+              }
+              break;
+           
+           case 3:
+              if(day-30 == 0){
+                 day1c = "thirtieth";
+                 day2c = "";
+              }
+              else{
+              day1c="Thirty";
+              day2c = setday2(day-30);
+              }
+              break;
+
         }
-        printf("The day is: %s, the %s-%s %d\n",monthc,day1c,day2c,year);
+        printf("The day is: %s the %s %s %d\n",monthc,day1c,day2c,year);
         break;
      }  
 //      switch day {
