@@ -8,27 +8,37 @@
 #include <string.h>
 
 
-char setday2(int day){
+char* setday2(int day){
    char *dayc = NULL;
-   switch(day):{
+   printf("day given is: %d\n",day);
+   switch(day){
       case 1:
          dayc = "first";
+         break;
       case 2:
          dayc = "second";
+         break;
       case 3:
          dayc = "third";
+         break;
       case 4:
          dayc = "forth";
+         break;
       case 5:
          dayc = "fifth";
+         break;
       case 6:
          dayc = "sixth";
+         break;
       case 7:
          dayc = "seventh";
+         break;
       case 8:
-         dayc = "eigth";
+         dayc = "eighth";
+         break;
       case 9:
-         dayc = "nineth";
+         dayc = "ninth";
+         break;
    }
    return dayc;
 
@@ -38,7 +48,7 @@ int main(void){ //initialize main with void return type.
 char buf[BUFSIZ]; //create a buffer with the defined buffer size
 
 while(1<2){ //loop incase of bad input
-printf("Enter a date as mm/dd/yyyy:: "); //ask for user input
+printf("Enter a date as mm/dd/yyyy: "); //ask for user input
 
   if (fgets(buf, sizeof(buf), stdin) != NULL) //get user input and store in buffer
   {
@@ -56,7 +66,7 @@ printf("Enter a date as mm/dd/yyyy:: "); //ask for user input
           good = -1;
           break;
        }
-       int i = strtol( result, &garbage, 0);
+       int i = strtol( result, &garbage, 10);
        if (i == 0){ //catch invalid characters, aka non-integers
           printf("\n");
           good = -1;
@@ -69,17 +79,17 @@ printf("Enter a date as mm/dd/yyyy:: "); //ask for user input
        }
        k++;
     }
-   if(k != 3){ //make sure complete date was entered
-      printf("please enter a proper date");
-      good = -1;
-   }
+   //if(k != 3){ //make sure complete date was entered
+     // printf("please enter a proper date\n");
+     // good = -1;
+  // }
    if(good==0){ //if all was good display and compute data
       int day = date[1];
       int month = date[0];
       int year = date[2];
 
       if( month < 1 || month > 12 ){
-         printf("Please make sure the month is between 1 and 12");
+         printf("Please make sure the month is between 1 and 12\n");
          reallygood =  -1;
        }
       if( month == 2 ){ //February is a special month
@@ -146,14 +156,15 @@ printf("Enter a date as mm/dd/yyyy:: "); //ask for user input
         }
         char *day1c = NULL;
         char *day2c = NULL;
-        switch(int(day / 10)){
-           
+        int dayt = (int)(day / 10);
+        switch(dayt){           
            case 0:
               day1c="";
               day2c = setday2(day);
               break;
 
            case 1:
+              day2c="";
               if(day == 10){
                  day1c = "tenth";
               }
@@ -192,7 +203,7 @@ printf("Enter a date as mm/dd/yyyy:: "); //ask for user input
                  day2c = "";
               }
               else{
-              day1c="twenty";
+              day1c="twenty ";
               day2c = setday2(day-20);
               }
               break;
@@ -203,13 +214,13 @@ printf("Enter a date as mm/dd/yyyy:: "); //ask for user input
                  day2c = "";
               }
               else{
-              day1c="Thirty";
+              day1c="thirty ";
               day2c = setday2(day-30);
               }
               break;
 
         }
-        printf("The day is: %s the %s %s %d\n",monthc,day1c,day2c,year);
+        printf("The day is: %s the %s%s %d.\n",monthc,day1c,day2c,year);
         break;
      }  
 //      switch day {
