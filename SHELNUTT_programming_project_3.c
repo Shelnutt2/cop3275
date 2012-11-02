@@ -2,7 +2,6 @@
 //COP3275
 //All code is released under the terms of the gpl v2 or later.
 
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
