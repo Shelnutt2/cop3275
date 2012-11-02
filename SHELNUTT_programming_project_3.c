@@ -8,7 +8,7 @@
 #include <string.h>
 
 
-char* setday2(int day){
+char* setday2(int day){ //Function to set ones ordinal name
    char *dayc = NULL;
    printf("day given is: %d\n",day);
    switch(day){
@@ -53,7 +53,7 @@ printf("Enter a date as mm/dd/yyyy: "); //ask for user input
   if (fgets(buf, sizeof(buf), stdin) != NULL) //get user input and store in buffer
   {
    int good = 0; //is input good?
-   int reallygood = 0; //is input really good?
+   int reallygood = 0; //Does input pass second checks?
    char *result = NULL; //used for seperating input
    char *garbage = NULL; //collect bad input
    char delims[] = "/"; //delimiter
@@ -68,7 +68,7 @@ printf("Enter a date as mm/dd/yyyy: "); //ask for user input
        }
        int i = strtol( result, &garbage, 10);
        if (i == 0){ //catch invalid characters, aka non-integers
-          printf("\n");
+          printf("Please enter only valid dates\n");
           good = -1;
           break;
        }
@@ -79,10 +79,7 @@ printf("Enter a date as mm/dd/yyyy: "); //ask for user input
        }
        k++;
     }
-   //if(k != 3){ //make sure complete date was entered
-     // printf("please enter a proper date\n");
-     // good = -1;
-  // }
+
    if(good==0){ //if all was good display and compute data
       int day = date[1];
       int month = date[0];
@@ -104,19 +101,19 @@ printf("Enter a date as mm/dd/yyyy: "); //ask for user input
               reallygood = -1;
          }
       }
-      else if( month == 1 || month == 3 || month == 5 || month  == 7 || month == 8 || month == 10 || month == 12){
+      else if( month == 1 || month == 3 || month == 5 || month  == 7 || month == 8 || month == 10 || month == 12){ //Check months with 31  days
          if( day > 31 || day < 1 ){
             printf("Please make sure the day is between 1 and 31\n");
             reallygood = -1;
          }
       }
-      else if( day > 31 || day < 1 ){
-         printf("Please make sure the day is between 1 and 30\n");
+      else if( day > 30 || day < 1 ){
+         printf("Please make sure the day is between 1 and 30\n"); //Check months with 30 days
          reallygood =  -1;
       }
      if(reallygood==0){
-        char *monthc=NULL;
-        switch(month){
+        char *monthc=NULL; //Create pointer for month name
+        switch(month){ //Case to set month name
            case 1:
               monthc="January";
               break;
@@ -156,14 +153,13 @@ printf("Enter a date as mm/dd/yyyy: "); //ask for user input
         }
         char *day1c = NULL;
         char *day2c = NULL;
-        int dayt = (int)(day / 10);
-        switch(dayt){           
-           case 0:
+        switch((int)(day / 10)){    //Switch case based on 10 place for day to set ordinal number for day.       
+           case 0: //Case for 1-9
               day1c="";
-              day2c = setday2(day);
+              day2c = setday2(day); //Get ones place day.
               break;
 
-           case 1:
+           case 1: //Case for 10-19
               day2c="";
               if(day == 10){
                  day1c = "tenth";
@@ -197,25 +193,25 @@ printf("Enter a date as mm/dd/yyyy: "); //ask for user input
               }
               break;
 
-           case 2:
+           case 2: //Case for 20-29
               if(day-20 == 0){
                  day1c = "twentieth";
                  day2c = "";
               }
               else{
               day1c="twenty ";
-              day2c = setday2(day-20);
+              day2c = setday2(day-20); //Get ones place day.
               }
               break;
            
-           case 3:
+           case 3: //Case for 30-31
               if(day-30 == 0){
                  day1c = "thirtieth";
                  day2c = "";
               }
               else{
               day1c="thirty ";
-              day2c = setday2(day-30);
+              day2c = setday2(day-30); //Get ones place day.
               }
               break;
 
@@ -223,18 +219,11 @@ printf("Enter a date as mm/dd/yyyy: "); //ask for user input
         printf("The day is: %s the %s%s %d.\n",monthc,day1c,day2c,year);
         break;
      }  
-//      switch day {
-//
 
-  // }
-  // printf("Row sums: %d %d %d %d\n", rowsum[0], rowsum[1], rowsum[2], rowsum[3]); //print output
-  // printf("Column sums: %d %d %d %d\n", colsum[0], colsum[1], colsum[2], colsum[3]);
-//   printf("Diagonal sums: %d %d\n", diagsum[0], diagsum[1]);
-   //break;
+   }
+ 
+
+  }
  }
-    
-
-}
-}
 return(0); //return zero value, aka indicate everything worked as expected
 }
