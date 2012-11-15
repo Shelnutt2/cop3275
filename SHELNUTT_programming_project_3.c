@@ -9,7 +9,6 @@
 
 char* setday2(int day){ //Function to set ones ordinal name
    char *dayc = NULL;
-   printf("day given is: %d\n",day);
    switch(day){
       case 1:
          dayc = "first";
