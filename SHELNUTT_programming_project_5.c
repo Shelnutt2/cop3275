@@ -15,28 +15,24 @@ void makeMagic(N){
    for(i = 0; i < N; i++) {
       for(j = 0; j < N; j++) {
          MagicSquare[i][j] = -1;
-//         printf("%3d ", MagicSquare[i][j]);
       }
-      printf("\n");
+
    } 
    for(i=0;i<(N*N);i++){
       row =(int)((start-i+offset)%N); //wrap around rows
       if (row != 0){ //Work around because C can't handle negative mod like python.
          row += N;
       }
-      column = (int)(middle+i)%N; //wrap around columns
-      printf("Current Values are: %d  %d   %d \n",i+1,row,column); //debug output
+      column = (int)(middle+i-offset2)%N; //wrap around columns
       if(MagicSquare[row][column] > 0){
-         offset +=1;
+         offset +=2;
          offset2 +=1;
          row =(int)((start-i+offset)%N);
-         column = (int)(middle+i)%N; //wrap around columns
+         column = (int)(middle+i-offset2)%N; //wrap around columns
          if (row != 0){ //Work around because C can't handle negative mod like python.
             row += N;
          }
-         printf("New Values are: %d  %d   %d \n",i+1,row,column); //debug output
-         printf("Values is: %d\n Row would be: %d\n",middle+i-offset,(middle+i-offset)%N);
-         MagicSquare[row][column-1] = (i+1);
+         MagicSquare[row][column] = (i+1);
       }
       else{
          MagicSquare[row][column] = (i+1);
