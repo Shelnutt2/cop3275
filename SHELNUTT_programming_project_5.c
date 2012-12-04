@@ -9,9 +9,8 @@ void makeMagic(N){ //make magic sqaure function.
    int MagicSquare[N][N]; //Create a N by N matrix.
    int i,j,row,column;
    int offset = 0; //needed for when executing the algorithm and you encounter a element which has a number
-   int offset2 = 0;
-   int middle = (int)(N/2);
-   int start = 0;
+   int offset2 = 0;//needed for when executing the algorithm and you encounter a element which has a number
+   int middle = (int)(N/2); //Computer middle term, casting int rounds down, which yield middle since arrays start at 0 not 1.
    for(i = 0; i < N; i++) { //Initialize matrix with negatives so we can tell if we've hit an existing element for not
       for(j = 0; j < N; j++) {
          MagicSquare[i][j] = -1;
@@ -19,17 +18,17 @@ void makeMagic(N){ //make magic sqaure function.
 
    } 
    for(i=0;i<(N*N);i++){//Loop through all numbers of square.
-      row =(int)((start-i+offset)%N); //wrap around rows
-      if (row != 0){ //Work around because C can't handle negative mod like python.
+      row =(int)((-i+offset)%N); //wrap around rows
+      if (row < 0){ //Work around because C can't handle negative mod like python.
          row += N;
       }
       column = (int)(middle+i-offset2)%N; //wrap around columns
       if(MagicSquare[row][column] > 0){ //if we run into an exist element
          offset +=2; //go down to rows
          offset2 +=1; //Go back 1 column
-         row =(int)((start-i+offset)%N); //set new row
+         row =(int)((-i+offset)%N); //set new row
          column = (int)(middle+i-offset2)%N; //set new column
-         if (row != 0){ //Work around because C can't handle negative mod like python.
+         if (row < 0){ //Work around because C can't handle negative mod like python.
             row += N;
          }
          MagicSquare[row][column] = (i+1); //Add next value to array, i+1 because i starts at 0 not 1
@@ -41,7 +40,7 @@ void makeMagic(N){ //make magic sqaure function.
    }
    for(i = 0; i < N; i++) { //Print Magic Square
       for(j = 0; j < N; j++) {
-         printf("%3d ", MagicSquare[i][j]);
+         printf("%3d ", MagicSquare[i][j]);//print each element in the row
       }
       printf("\n"); //Print new line for each new row
    } 
